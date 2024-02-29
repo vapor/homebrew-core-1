@@ -1,8 +1,10 @@
 class Pypy310 < Formula
   desc "Implementation of Python 3 in Python"
   homepage "https://pypy.org/"
+  # TODO: Allow setuptools >= 60 in pypi_formula_mappings.json after adding required sysconfig patch
+  # See https://github.com/Homebrew/homebrew-core/pull/99892#issuecomment-1108492321
   url "https://downloads.python.org/pypy/pypy3.10-v7.3.15-src.tar.bz2"
-  sha256 "48ce19ca7642131b8468ddfb7ef355f49952518702ab501e2c6b3d9b4eb09ad4"
+  sha256 "837622130b36603a1893899bd9f529961a8e4a56c9eb67268d72ddf8920c9579"
   license "MIT"
   head "https://github.com/pypy/pypy.git", branch: "main"
 
@@ -36,17 +38,15 @@ class Pypy310 < Formula
   uses_from_macos "unzip"
   uses_from_macos "zlib"
 
-  # setuptools >= 60 required sysconfig patch
-  # See https://github.com/Homebrew/homebrew-core/pull/99892#issuecomment-1108492321
+  # Always update to latest pip release. Keep setuptools < 60 until sysconfig patch is added.
+  resource "pip" do
+    url "https://files.pythonhosted.org/packages/94/59/6638090c25e9bc4ce0c42817b5a234e183872a1129735a9330c472cc2056/pip-24.0.tar.gz"
+    sha256 "ea9bd1a847e8c5774a5777bb398c19e80bcd4e2aa16a4b301b718fe6f593aba2"
+  end
+
   resource "setuptools" do
     url "https://files.pythonhosted.org/packages/ef/75/2bc7bef4d668f9caa9c6ed3f3187989922765403198243040d08d2a52725/setuptools-59.8.0.tar.gz"
     sha256 "09980778aa734c3037a47997f28d6db5ab18bdf2af0e49f719bfc53967fd2e82"
-  end
-
-  # always pull the latest pip, https://pypi.org/project/pip/#files
-  resource "pip" do
-    url "https://files.pythonhosted.org/packages/b7/06/6b1ad0ae8f97d7a0d6f6ad640db10780578999e647a9593512ceb6f06469/pip-23.3.2.tar.gz"
-    sha256 "7fd9972f96db22c8077a1ee2691b172c8089b17a5652a44494a9ecb0d78f9149"
   end
 
   # Build fixes:
