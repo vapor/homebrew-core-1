@@ -522,6 +522,14 @@
   "pyinstaller": {
     "extra_packages": ["macholib"]
   },
+  "pypy3.10": {
+    "package_name": "",
+    "extra_packages": ["pip", "setuptools==59.8.0"]
+  },
+  "pypy3.9": {
+    "package_name": "",
+    "extra_packages": ["pip", "setuptools==59.8.0"]
+  },
   "pyqt": {
     "exclude_packages": [
       "PyQt6-3D-Qt6", "PyQt6-Charts-Qt6", "PyQt6-DataVisualization-Qt6",
