@@ -3,10 +3,9 @@ class Klee < Formula
 
   desc "Symbolic Execution Engine"
   homepage "https://klee.github.io/"
-  url "https://github.com/klee/klee/archive/refs/tags/v3.0.tar.gz"
-  sha256 "204ebf0cb739886f574b1190b04fa9ed9088770c0634984782e9633d1aa4bdc9"
+  url "https://github.com/klee/klee/archive/refs/tags/v3.1.tar.gz"
+  sha256 "ae3d97209fa480ce6498ffaa7eaa7ecbbe22748c739cb7b2389391d0d9c940f7"
   license "NCSA"
-  revision 2
   head "https://github.com/klee/klee.git", branch: "master"
 
   bottle do
@@ -22,7 +21,7 @@ class Klee < Formula
   depends_on "cmake" => :build
   depends_on "python-setuptools" => :build
   depends_on "gperftools"
-  depends_on "llvm@14" # LLVM 16 PR: https://github.com/klee/klee/pull/1664
+  depends_on "llvm@16"
   depends_on "python-tabulate"
   depends_on "python@3.12"
   depends_on "sqlite"
@@ -36,8 +35,8 @@ class Klee < Formula
 
   # klee needs a version of libc++ compiled with wllvm
   resource "libcxx" do
-    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.6/llvm-project-14.0.6.src.tar.xz"
-    sha256 "8b3cfd7bc695bd6cea0f37f53f0981f34f87496e79e2529874fd03a2f9dd3a8a"
+    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.6/llvm-project-16.0.6.src.tar.xz"
+    sha256 "ce5e71081d17ce9e86d7cbcfa28c4b04b9300f8fb7e78422b1feb6bc52c3028e"
   end
 
   def llvm
